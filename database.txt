@@ -1,0 +1,25 @@
+create table if not exists Musician (
+	id serial primary key,
+	nickname varchar(100) not null
+);
+
+
+create table if not exists Album (
+	id serial primary key,
+	name_album varchar(150) not null,
+	year_bithday integer check(year_bithday >1200) not null,
+	musicianId integer references musician(id)
+);
+
+create table if not exists Record (
+	id serial primary key,
+	name_record varchar(150) not null,
+	length integer check(length>0) not null,
+	albumId integer references album(id)
+);
+
+create table if not exists Style (
+	id serial primary key,
+	name_style varchar(150) not null,
+	musicianId integer references musician(id)
+)
